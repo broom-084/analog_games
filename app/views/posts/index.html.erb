@@ -1,10 +1,48 @@
-<h1>新規投稿</h1>
-<%= form_with model: post do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+<div class="container px-5 px-sm-0">
+  <div class="mb-4">
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %> prohibited this obj from being saved:
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
   
-  <h4>本文</h4>
-  <%= f.text_area :review %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'post/list', user: @user, post: @post %>
+    </div>
   
-  <%= f.submit '投稿' %>
-<% end %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Posts</h2>
+  
+      <table class="table table-hover table-inverse">
+        <thead>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </thead>
+    
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td>
+                <%= link_to user_path(post.user.id) do %>
+                  <%= image_tag post.user.get_profile_image(100,100) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to post_path(post.id) do %>
+                  <%= post.title %>
+                <% end %>
+              </td>
+              <td><%= post.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -23,21 +23,21 @@
     <% end %>
   </div>
 
-  <h2 class="mt-3">New book</h2>
+  <h2 class="mt-3">New post</h2>
 
-  <%= form_with model: book do |f| %>
+  <%= form_with model: post do |f| %>
   <div class="form-group">
-    <label for="book_title">Title</label><br>
+    <label for="post_title">Title</label><br>
     <%= f.text_field :title, class: "form-control" %>
   </div>
     
   <div class="form-group">
-    <label for="book_opinion">Opinion</label><br>
+    <label for="post_opinion">Opinion</label><br>
     <%= f.text_area :body, class: "form-control" %>
   </div>
     
   <div class="form-group">
-    <%= f.submit 'Create Book', class: "btn btn-success" %>
+    <%= f.submit 'Create Post', class: "btn btn-success" %>
   </div>
   <% end %>
 </div>
