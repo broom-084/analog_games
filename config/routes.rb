@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about', as: 'about'
   resources :posts
   resources :users
+  get "search" => "searches#search"
 end
