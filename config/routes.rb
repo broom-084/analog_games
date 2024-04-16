@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   get 'users/index'
   get 'users/edit'
   get 'users/show'
-  devise_for :users
+  #devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'homes#top'
-  get 'homes/about' => 'homes#about', as: 'about'
+  #root to: 'homes#top'
+  #get 'homes/about' => 'homes#about', as: 'about'
   resources :posts
   resources :users
   get "search" => "searches#search"
