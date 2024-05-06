@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :public_state, only: [:create]
 
   def after_sign_in_path_for(resource)
     user_path(current_user.id)
@@ -34,6 +34,13 @@ class Public::SessionsController < Devise::SessionsController
   # end
   
   protected
+  
+  def users_state
+    users = Users.find_by(email: params[:users][:email])
+    return if users.nil?
+    return unless users.valid_password?(params[:users][:password])
+    
+  end
   
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
