@@ -34,6 +34,8 @@
           <%= f.submit "Update User", class: "btn btn-secondary" %>
         </div>
       <% end %>
+      
+      <%= link_to "退会ページ", user_withdrawal_path(current_user) %>
     </div>
   </div>
 </div>

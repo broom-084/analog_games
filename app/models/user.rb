@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  #has_many :comments, dependent: :destroy
   
   has_one_attached :profile_image
   
@@ -31,6 +31,6 @@ class User < ApplicationRecord
     end
   end
   
-  validates :name, length: {in: 2..20}, uniqueness: true
+  validates :name, length: {in: 2..20}
   validates :introduction, length: {maximum: 50}
 end

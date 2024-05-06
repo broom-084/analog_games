@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
   
   def show
@@ -25,6 +26,17 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @users = User.all
     @post_new = Post.new
+  end
+  
+  def withdrawal
+    @user = current_user
+  end
+  
+  def delete
+    current_user.update!(is_active: false)
+    current_user.posts.destroy_all
+    sign_out
+    redirect_to root_path
   end
   
   private
