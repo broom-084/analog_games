@@ -40,6 +40,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @post_new = Post.new
+    @comment = Comment.new
   end
   
   def destroy
